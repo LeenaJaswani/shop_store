@@ -1,0 +1,36 @@
+import React from "react";
+import { useNavigate } from "react-router-dom";
+
+const Search = () => {
+    
+
+    const navigate = useNavigate();
+
+    const [searchTerm, setSearchTerm] = React.useState("");
+
+    React.useEffect(() => {
+        const delay = setTimeout(() => {
+            if (searchTerm) {
+                navigate("/search?s=" + searchTerm);
+            }
+        }, 500);
+
+        return () => clearTimeout(delay);
+    }, [searchTerm, navigate]);
+
+    const handleChange = (ev) => {
+        setSearchTerm(ev.target.value);
+    };
+    return (
+        <div className="item search right" >
+        <div className="search-group">
+        
+     <input type="text" name="search" onChange={handleChange} />
+              
+        
+          </div>
+      </div>
+    );
+};
+
+export default Search;
